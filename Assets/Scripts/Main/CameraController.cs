@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
-{   
+{
     float scaleSpeed;
     float minZ;
     float maxZ;
@@ -26,29 +26,25 @@ public class CameraController : MonoBehaviour
         maxZ = -1.5f;
 
     }
-
+    
     void CameraScaler()
-    {   
+    {
 
-        if (Camera.main.transform.position.z < minZ)
+        if (Camera.main.transform.position.z > minZ)
         {
-            Camera.main.transform.position = new Vector3(-0.3f, 30.4f, -10.0f);
-            return;
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                Camera.main.transform.Translate(0, 0, -1 * scaleSpeed);
+                Debug.Log(Camera.main.name);
+            }
+
         }
-        if (Camera.main.transform.position.z > maxZ)
+        if (Camera.main.transform.position.z < maxZ)
         {
-            Camera.main.transform.position = new Vector3(-0.4f, 6.9f, -1.5f);
-            return;
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                Camera.main.transform.Translate(0, 0, 1 * scaleSpeed);
+            }
         }
-        if (Input.GetAxis("Mouse ScrollWheel")<0)
-        {
-            Camera.main.transform.Translate(0,0,-1*scaleSpeed);   
-            Debug.Log(Camera.main.name);
-        }
-         if (Input.GetAxis("Mouse ScrollWheel")>0)
-        {
-            Camera.main.transform.Translate(0,0,1*scaleSpeed);   
-        }
-        Debug.Log(Camera.main.transform.position);
     }
 }

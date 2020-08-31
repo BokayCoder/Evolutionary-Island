@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
     float minZ;
     float maxZ;
 
+    float moveSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,15 +20,42 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         CameraScaler();
+        MoveCamera();
     }
     void Init()
     {
         scaleSpeed = 1.0f;
         minZ = -10.0f;
         maxZ = -1.5f;
+        moveSpeed = 10.0f;
 
     }
-    
+        void MoveCamera()
+    {
+        if(Input.mousePosition.x >= Screen.width)
+        {   
+            Camera.main.transform.Translate(1 * moveSpeed*Time.deltaTime, 0, 0,Space.World);
+            Debug.Log("right");
+        }
+        if(Input.mousePosition.x <= 0)
+        {   
+            Camera.main.transform.Translate(-1 * moveSpeed*Time.deltaTime, 0, 0,Space.World);
+            Debug.Log("left");
+        }
+        if(Input.mousePosition.y >= Screen.height)
+        {   
+            Camera.main.transform.Translate(0,0,1 * moveSpeed*Time.deltaTime,Space.World);
+
+             Debug.Log("up");
+        }
+        if(Input.mousePosition.y <= 0)
+        {
+            Camera.main.transform.Translate(0,0,-1 * moveSpeed*Time.deltaTime,Space.World);
+           
+            Debug.Log("down");
+            
+        }
+    }
     void CameraScaler()
     {
 

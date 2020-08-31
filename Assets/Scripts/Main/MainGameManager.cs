@@ -93,8 +93,8 @@ public class MainGameManager : MonoBehaviour
 
     void AnimatorMapping()
     {
-        myCharacterAnimator.SetBool("isWalking",isWalking);
-        myCharacterAnimator.SetBool("isIdling",isIdling);
+        myCharacterAnimator.SetBool("isWalking", isWalking);
+        myCharacterAnimator.SetBool("isIdling", isIdling);
     }
 
 }
